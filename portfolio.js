@@ -4,7 +4,7 @@ const growthLog = [
   { title:"AWS AI/ML Nanodegree", org:"Udacity — AI Practitioner Challenge completed", status:"done" },
   { title:"KPMG Audit & Assurance Simulation", org:"Forage", status:"done" },
   { title:"Wells Fargo Software Engineering Simulation", org:"Forage", status:"done" },
-  { title:"JPMorgan Chase Software Engineering Simulation", org:"Forage", status:"done" },
+  { title:"JPMorgan Chase Software Engineering Simulation", org:"Forage", status:"progress" },
   { title:"Data Analysis Course, July 2026 Cohort", org:"MS Virtual Academy", status:"progress" },
   { title:"LILO SWE Academy", org:"Cohort program", status:"progress" },
   { title:"Data Science Internship", org:"DecodeLabs", status:"done" },
