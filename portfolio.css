@@ -263,6 +263,23 @@ section{ position:relative; padding:120px 0; }
 }
 .log-status.progress{ background:transparent; border:1px solid var(--lavender); color:var(--lavender); }
 .log-org{ font-family:var(--mono); font-size:0.78rem; color:var(--bone-dim); margin-top:6px; }
+.log-expand{
+  font-family:var(--mono); font-size:0.68rem; letter-spacing:0.03em; color:var(--lavender);
+  background:transparent; border:none; cursor:pointer; padding:2px 0; text-decoration:underline;
+  text-underline-offset:3px; transition:color .3s;
+}
+.log-expand:hover{ color:var(--gold-soft); }
+.log-children{ display:flex; flex-wrap:wrap; gap:8px; margin-top:14px; }
+.log-child-pill{ font-size:0.7rem; padding:6px 12px; }
+
+/* ---------- stack (languages & tools) ---------- */
+.stack{ background: linear-gradient(180deg, var(--ink) 0%, var(--charcoal) 100%); }
+.stack-groups{ display:flex; flex-direction:column; gap:28px; max-width:780px; margin:0 auto; }
+.stack-label{
+  font-family:var(--mono); font-size:0.72rem; letter-spacing:0.08em; text-transform:uppercase;
+  color:var(--gold-soft); margin-bottom:12px;
+}
+.stack-group .pill-row{ margin-top:0; }
 
 /* ---------- projects ---------- */
 .projects{ background: linear-gradient(180deg, var(--charcoal), var(--ink) 60%); }

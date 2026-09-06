@@ -10,24 +10,66 @@ const growthLog = [
   { title:"Data Science Internship", org:"DecodeLabs", status:"done" },
   { title:"Data Science Internship", org:"CodeAlpha", status:"done" },
   { title:"CS50P", org:"HarvardX", status:"done" },
-  { title:"Design Thinking · Critical Thinking in the AI Era", org:"HP LIFE", status:"done" },
+  { title:"Critical Thinking in the AI Era", org:"HP LIFE", status:"done" },
+  { title:"Design Thinking", org:"HP LIFE", status:"done" },
+  { title:"Effective Leadership", org:"HP LIFE", status:"done" },
+  { title:"Professional Networking for Career Growth", org:"HP LIFE", status:"done" },
   { title:"Cybersecurity Diploma", org:"Transformation College / Panoramic Synergy", status:"done" },
+  { title:"Data Science Lab", org:"WorldQuant University", status:"progress" },
+  { title:"AWS AI Programmer Nanodegree", org:"Udacity", status:"progress" },
+  { title:"AI &amp; ML Fluency Internship", org:"FlyRank", status:"progress" },
+  { title:"Data Visualization with Python", org:"Cognix AI / Cognitive Class", status:"progress" },
+  { title:"IBM Z Advocate", org:"IBM", status:"active" },
+  { title:"AI Engineer for Data Scientists Associate", org:"DataCamp — certification, incl. Supervised Learning w/ scikit-learn &amp; the OpenAI API track", status:"done" },
+  { title:"Anthropic Skilljar Courses", org:"11 completed, more in progress — AI Fluency Framework, Claude 101, Claude Code 101, and others", status:"done",
+    children:[
+      { title:"AI Fluency: Framework & Foundations", url:"https://anthropic.skilljar.com/ai-fluency-framework-foundations" },
+      { title:"Claude 101", url:"https://anthropic.skilljar.com/claude-101" },
+      { title:"Introduction to Claude Cowork", url:"https://anthropic.skilljar.com/introduction-to-claude-cowork" },
+      { title:"AI Capabilities and Limitations", url:"https://anthropic.skilljar.com/ai-capabilities-and-limitations" },
+      { title:"AI Fluency for Students", url:"https://anthropic.skilljar.com/ai-fluency-for-students" },
+      { title:"AI Fluency for Small Businesses", url:"https://anthropic.skilljar.com/ai-fluency-for-small-businesses" },
+      { title:"AI Fluency for Educators", url:"https://anthropic.skilljar.com/ai-fluency-for-educators" },
+      { title:"Teaching AI Fluency", url:"https://anthropic.skilljar.com/teaching-ai-fluency" },
+      { title:"AI Fluency for Nonprofits", url:"https://anthropic.skilljar.com/ai-fluency-for-nonprofits" },
+      { title:"AI Fluency for Builders", url:"https://anthropic.skilljar.com/ai-fluency-for-builders" },
+      { title:"Claude Code 101", url:"https://anthropic.skilljar.com/claude-code-101" },
+      { title:"Claude Code in Action", url:"https://anthropic.skilljar.com/claude-code-in-action" },
+    ]
+  },
 ];
 
 const logList = document.getElementById('logList');
-growthLog.forEach(item=>{
+growthLog.forEach((item, idx)=>{
   const div = document.createElement('div');
   div.className = 'log-item ' + (item.status === 'done' ? 'done' : '');
   const statusLabel = item.status === 'done' ? 'Completed' : (item.status === 'active' ? 'Active' : 'In progress');
+  const hasChildren = Array.isArray(item.children) && item.children.length > 0;
+  const toggleId = `logToggle${idx}`;
   div.innerHTML = `
     <div class="log-dot"></div>
     <div class="log-head">
       <span class="log-title">${item.title}</span>
       <span class="log-status ${item.status !== 'done' ? 'progress':''}">${statusLabel}</span>
+      ${hasChildren ? `<button type="button" class="log-expand" id="${toggleId}" aria-expanded="false">Show all ${item.children.length} →</button>` : ''}
     </div>
     <div class="log-org">${item.org}</div>
+    ${hasChildren ? `<div class="log-children" id="${toggleId}-list" hidden>
+      ${item.children.map(c => `<a class="pill log-child-pill" href="${c.url}" target="_blank" rel="noopener">${c.title}</a>`).join('')}
+    </div>` : ''}
   `;
   logList.appendChild(div);
+
+  if(hasChildren){
+    const btn = div.querySelector(`#${toggleId}`);
+    const list = div.querySelector(`#${toggleId}-list`);
+    btn.addEventListener('click', ()=>{
+      const open = btn.getAttribute('aria-expanded') === 'true';
+      btn.setAttribute('aria-expanded', String(!open));
+      list.hidden = open;
+      btn.textContent = open ? `Show all ${item.children.length} →` : 'Hide list ↑';
+    });
+  }
 });
 
 // ---------- data: extend this array any time a new project ships ----------
